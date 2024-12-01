@@ -1,0 +1,36 @@
+# FastAPI Stock Prediction
+
+###
+# @name Train Model
+POST http://localhost:8000/train
+Content-Type: application/json
+access_token: dead-beef-15-bad-f00d
+
+{
+  "ticker": "AAPL"
+}
+
+###
+# @name Predict Price
+GET http://localhost:8000/predict?
+    ticker=AAPL
+access_token: dead-beef-15-bad-f00d
+
+###
+# @name Model Status
+GET http://localhost:8000/status?
+    ticker=AAPL
+access_token: dead-beef-15-bad-f00d
+
+###
+# @name User Prediction
+POST http://localhost:8000/predict_from_file?
+    ticker=AAPL
+access_token: dead-beef-15-bad-f00d
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="/E:/git/fiap/fial-mlet-4/data/stock_historical_data.csv"
+
+< /E:/git/fiap/fial-mlet-4/data/stock_historical_data.csv
+--WebAppBoundary

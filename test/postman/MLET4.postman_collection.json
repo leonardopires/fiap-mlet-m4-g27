@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "e416f074-3c34-4f9a-93c6-8ce4b0f193c7",
+		"name": "FastAPI Stock Prediction",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2037622"
+	},
+	"item": [
+		{
+			"name": "Train Model",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "access_token",
+						"value": "dead-beef-15-bad-f00d"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ticker\": \"AAPL\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8000/train",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"train"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Predict Price",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "dead-beef-15-bad-f00d"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/predict?ticker=AAPL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"predict"
+					],
+					"query": [
+						{
+							"key": "ticker",
+							"value": "AAPL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Model Status",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "dead-beef-15-bad-f00d"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8000/status?ticker=AAPL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"status"
+					],
+					"query": [
+						{
+							"key": "ticker",
+							"value": "AAPL"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Prediction",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "access_token",
+						"value": "dead-beef-15-bad-f00d",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/E:/git/fiap/fial-mlet-4/data/stock_historical_data.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/predict_from_file?ticker=AAPL",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"predict_from_file"
+					],
+					"query": [
+						{
+							"key": "ticker",
+							"value": "AAPL"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
