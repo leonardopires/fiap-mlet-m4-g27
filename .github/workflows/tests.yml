@@ -13,9 +13,11 @@ jobs:
       - name: Fazer checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar permissões do Docker
+      - name: Instalar Docker Compose
         run: |
-          sudo chown $USER:docker /var/run/docker.sock
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
 
       - name: Subir serviços com Docker Compose
         run: |
