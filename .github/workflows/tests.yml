@@ -13,10 +13,9 @@ jobs:
       - name: Fazer checkout do código
         uses: actions/checkout@v3
 
-      - name: Configurar Docker Compose
+      - name: Configurar permissões do Docker
         run: |
-          sudo apt-get update
-          sudo apt-get install docker-compose-plugin -y
+          sudo chown $USER:docker /var/run/docker.sock
 
       - name: Subir serviços com Docker Compose
         run: |
@@ -28,4 +27,4 @@ jobs:
 
       - name: Parar serviços
         run: |
-          docker-compose downs
+          docker-compose down
