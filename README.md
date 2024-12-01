@@ -69,14 +69,14 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
 
 ## Instalação
 
-1. **Clone o repositório**:
+### 1. Clone o repositório:
 
    ```bash
    git clone https://github.com/seu-usuario/seu-repositorio.git
    cd seu-repositorio
    ```
 
-2. **Configuração da Chave de API**:
+### 2. Configuração da Chave de API:
 
    - A chave de API é usada para autenticar as requisições.
    - Crie um arquivo `.env` na raiz do projeto e adicione a seguinte linha:
@@ -86,6 +86,66 @@ Certifique-se de ter as seguintes ferramentas instaladas em seu ambiente:
      ```
 
    - **Nota**: Certifique-se de que esta chave corresponda à usada em suas configurações.
+
+
+### 3. Configurando o Projeto no PyCharm 2024
+
+Siga os passos abaixo para abrir e configurar o projeto no PyCharm 2024.
+
+#### 3.1. Abrindo o Projeto
+
+1. Abra o PyCharm.
+2. Clique em **Open** na tela inicial.
+3. Navegue até a pasta raiz do projeto (onde o arquivo `docker-compose.yml` está localizado).
+4. Clique em **Open**.
+
+#### 3.2. Configurando o Ambiente de Desenvolvimento
+
+##### 3.2.1. Configurando o Python Interpreter
+
+1. No canto superior direito do PyCharm, clique no menu suspenso e selecione **Add Interpreter**.
+2. Escolha **Add New Interpreter** > **Docker Compose**.
+3. Em **Service**, selecione o serviço `app` configurado no `docker-compose.yml`.
+4. Clique em **OK** para confirmar.
+
+##### 3.2.2. Configurando as Dependências
+
+1. Certifique-se de que o PyCharm está configurado para usar o ambiente do Docker.
+2. Abra o terminal integrado do PyCharm (`View` > `Tool Windows` > `Terminal`).
+3. Execute o seguinte comando para instalar as dependências:
+   ```bash
+   docker-compose exec app pip install -r requirements.txt
+   ```
+
+##### 3.2.3. Configurando o Suporte ao FastAPI
+
+1. No menu principal do PyCharm, clique em **File** > **Settings**.
+2. Navegue até **Languages & Frameworks** > **FastAPI**.
+3. Configure o caminho para o arquivo principal da aplicação, geralmente localizado em `api/main.py`.
+
+##### 3.2.4. Configurando o Suporte ao Docker
+
+1. Em **File** > **Settings**, vá para **Build, Execution, Deployment** > **Docker**.
+2. Clique no botão **+** para adicionar uma nova configuração.
+3. Escolha **Docker for Windows/Mac/Linux** (dependendo do seu sistema operacional).
+4. Configure o caminho do Docker conforme necessário e clique em **OK**.
+
+##### 3.2.5. Executando a Aplicação
+
+1. Clique no botão **Add Configuration** no canto superior direito do PyCharm.
+2. Clique no botão **+** e selecione **Docker-Compose**.
+3. Em **Service**, selecione `app`.
+4. Clique em **Apply** e depois em **OK**.
+5. Pressione **Shift + F10** ou clique em **Run** para iniciar o serviço.
+
+##### 3.2.6. Configurando as Ferramentas de Teste
+
+1. Vá para **File** > **Settings** > **Tools** > **Python Integrated Tools**.
+2. Em **Default Test Runner**, selecione **pytest**.
+3. Certifique-se de que a pasta `tests/` está configurada como diretório de testes.
+4. Execute os testes no PyCharm usando o atalho **Ctrl + Shift + F10** em qualquer arquivo de teste.
+
+Com essas configurações, você estará pronto para desenvolver, testar e depurar o projeto no PyCharm 2024!
 
 ## Configuração
 
