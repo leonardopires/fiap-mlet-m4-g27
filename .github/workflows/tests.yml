@@ -1,4 +1,4 @@
-name: Run Tests
+name: Executar Testes com Docker Compose
 
 on:
   push:
@@ -10,18 +10,27 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
+      - name: Fazer checkout do código
         uses: actions/checkout@v3
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.9
-
-      - name: Install dependencies
+      - name: Instalar Docker Compose
         run: |
-          pip install -r requirements.txt
+          sudo curl -L "https://github.com/docker/compose/releases/download/v2.22.0/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+          sudo chmod +x /usr/local/bin/docker-compose
+          docker-compose --version
 
-      - name: Run tests
+      - name: Construir as imagens do Docker
         run: |
-          pytest --cov=.
+          docker-compose build
+
+      - name: Subir serviços com Docker Compose
+        run: |
+          docker-compose up -d
+
+      - name: Executar testes
+        run: |
+          docker-compose exec app pytest
+
+      - name: Parar serviços
+        run: |
+          docker-compose down
