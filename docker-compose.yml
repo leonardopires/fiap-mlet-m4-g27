@@ -13,6 +13,7 @@ services:
       - ./utils:/app/utils
       - ./models:/app/models
       - ./data:/app/data
+      - ./tests:/app/tests
     environment:
       - MODULE_NAME=api.main
       - VARIABLE_NAME=app
