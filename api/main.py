@@ -97,7 +97,27 @@ class PredictionsResponse(BaseModel):
 @app.post(
     "/train",
     summary="Treinar modelo para um ticker",
-    description="Inicia o treinamento de um modelo LSTM para o ticker fornecido. O treinamento ocorre em segundo plano e o modelo será salvo para uso futuro."
+    description="Inicia o treinamento de um modelo LSTM para o ticker fornecido. O treinamento ocorre em segundo plano e o modelo será salvo para uso futuro.",
+    responses={
+        202: {
+            "description": "Treinamento iniciado. O modelo estará disponível após o término do treinamento.",
+            "content": {
+                "application/json": {
+                    "example": {
+                        "message": "Treinamento iniciado para AAPL. O modelo estará disponível após o término do treinamento."
+                    }
+                }
+            },
+        },
+        400: {
+            "description": "Ticker não fornecido. Informe o ticker como query string ou JSON.",
+            "content": {
+                "application/json": {
+                    "example": {"detail": "Ticker não fornecido. Informe o ticker como query string ou JSON."}
+                }
+            },
+        },
+    },
 )
 async def train_endpoint(
     ticker: str = None,  # Parâmetro opcional como query string
