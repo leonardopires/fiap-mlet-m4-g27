@@ -14,5 +14,6 @@ joblib
 psutil
 prometheus-fastapi-instrumentator
 pytest
+pytest-cov
 requests
 python-multipart

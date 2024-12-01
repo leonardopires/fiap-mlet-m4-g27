@@ -19,6 +19,10 @@ jobs:
           sudo chmod +x /usr/local/bin/docker-compose
           docker-compose --version
 
+      - name: Construir as imagens do Docker
+        run: |
+          docker-compose build
+
       - name: Subir serviços com Docker Compose
         run: |
           docker-compose up -d
