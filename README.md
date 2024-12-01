@@ -1,6 +1,18 @@
 
 # API de Previsão de Preços de Ações
 
+Este projeto é o **Tech Challenge da 4ª fase da Pós-Graduação em Machine Learning Engineer da FIAP**. O objetivo principal é desenvolver uma API robusta para previsão de preços de fechamento de ações utilizando modelos de redes neurais do tipo LSTM (Long Short-Term Memory).
+
+A aplicação permite:
+
+- Treinar modelos de previsão com base em dados históricos de ações de qualquer empresa listada.
+- Realizar previsões personalizadas com dados enviados pelo usuário em formato CSV.
+- Monitorar o desempenho e a saúde da aplicação utilizando ferramentas como Grafana e Prometheus.
+- Expor uma documentação interativa via Swagger para facilitar o uso e a integração.
+
+Este desafio combina habilidades avançadas de **Deep Learning**, **Engenharia de Dados**, **Desenvolvimento de APIs** e **Deploy de Modelos**, aplicando conceitos aprendidos ao longo da fase.
+
+
 ## Autores
 
 - [Felipe de Paula Gomes](https://github.com/Felipe-DePaula) (RM355402)
