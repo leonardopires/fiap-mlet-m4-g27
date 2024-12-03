@@ -367,23 +367,6 @@ O projeto inclui testes unitários para verificar a funcionalidade de cada compo
    ```bash
    docker-compose exec app pytest
    ```
-
-2. **Gerar relatório de cobertura**:
-
-   ```bash
-   docker-compose exec app pytest --cov=.
-   ```
-
-### Testes End-to-End
-
-Os testes E2E verificam o comportamento da API em um ambiente realista.
-
-1. **Executar os testes E2E**:
-
-   ```bash
-   docker-compose exec app pytest tests/e2e
-   ```
-
 ---
 
 ## Notas Adicionais

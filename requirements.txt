@@ -4,7 +4,6 @@ numpy
 scikit-learn
 tensorflow
 keras
-fastapi
 uvicorn
 matplotlib
 seaborn
@@ -13,7 +12,9 @@ gspread
 joblib
 psutil
 prometheus-fastapi-instrumentator
-pytest
-pytest-cov
 requests
 python-multipart
+fastapi
+starlette
+pytest
+pytest-cov

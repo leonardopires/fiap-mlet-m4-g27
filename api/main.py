@@ -17,7 +17,7 @@ from utils.data_preprocessing import (
     prepare_test_data,
     preprocess_user_data,
 )
-from utils.model_utils import build_model, train_model, save_model, predict_price, load_trained_model
+from utils.model_utils import build_model, train_model, predict_price, load_trained_model
 from utils.security import get_api_key
 import joblib
 
@@ -31,6 +31,7 @@ app = FastAPI(
     version="1.0.0",
     debug=DEBUG
 )
+print(f"APP in main {app}")
 
 # Configura o Prometheus para monitoramento
 Instrumentator().instrument(app).expose(app)
@@ -120,10 +121,10 @@ class PredictionsResponse(BaseModel):
     },
 )
 async def train_endpoint(
-    ticker: str = None,  # Parâmetro opcional como query string
-    request: TrainRequest = None,  # Modelo opcional como corpo da requisição
-    background_tasks: BackgroundTasks = None,
-    api_key: str = Depends(get_api_key)
+        ticker: str = None,  # Parâmetro opcional como query string
+        request: TrainRequest = None,  # Modelo opcional como corpo da requisição
+        background_tasks: BackgroundTasks = None,
+        api_key: str = Depends(get_api_key)
 ):
     """
     Endpoint para iniciar o treinamento de um modelo LSTM com base em um ticker.
@@ -157,7 +158,8 @@ async def train_endpoint(
     # Retorna o status 202 Accepted
     return JSONResponse(
         status_code=202,
-        content={"message": f"Treinamento iniciado para {ticker}. O modelo estará disponível após o término do treinamento."}
+        content={
+            "message": f"Treinamento iniciado para {ticker}. O modelo estará disponível após o término do treinamento."}
     )
 
 
@@ -359,6 +361,21 @@ async def predict_from_file(
         raise HTTPException(status_code=500, detail=f"Erro ao fazer as previsões: {e}")
 
     return {"predictions": [float(price) for price in predicted_prices]}
+
+
+@app.delete("/delete_model", summary="Deletar modelo", description="Remove o modelo treinado para um ticker.")
+async def delete_model_endpoint(ticker: str, api_key: str = Depends(get_api_key)):
+    """Endpoint para deletar o modelo treinado de um ticker."""
+    ticker = ticker.upper()
+    model_path = os.path.join(MODEL_DIR, f"{ticker}_model.h5")
+    scaler_path = os.path.join(MODEL_DIR, f"{ticker}_scaler.pkl")
+
+    if os.path.exists(model_path):
+        os.remove(model_path)
+    if os.path.exists(scaler_path):
+        os.remove(scaler_path)
+
+    return {"message": f"Modelo para {ticker} removido com sucesso."}
 
 
 # Executa a aplicação se o script for executado diretamente
