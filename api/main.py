@@ -358,7 +358,7 @@ async def predict_from_file(
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Erro ao fazer as previsões: {e}")
 
-    return {"predictions": [float(price) for price in predicted_prices]}
+    return {"predictions": [float(price) for price in predicted_prices][:7]}
 
 
 # Executa a aplicação se o script for executado diretamente
